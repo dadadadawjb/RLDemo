@@ -222,6 +222,8 @@ def test(args):
     if env_name in ['VideoPinball-ramNoFrameskip-v4', 'BreakoutNoFrameskip-v4', 'PongNoFrameskip-v4', 'BoxingNoFrameskip-v4']:
         if args.gui:
             test_env = gym.make(env_name, render_mode='human')
+        elif args.video:
+            test_env = gym.make(env_name, render_mode='rgb_array')
         else:
             test_env = gym.make(env_name)
         test_env.action_space.seed(args.seed)
@@ -264,6 +266,8 @@ def test(args):
     elif env_name in ['Hopper-v2', 'Humanoid-v2', 'HalfCheetah-v2', 'Ant-v2']:
         if args.gui:
             test_env = gym.make(env_name, render_mode='human')
+        elif args.video:
+            test_env = gym.make(env_name, render_mode='rgb_array')
         else:
             test_env = gym.make(env_name)
         test_env.action_space.seed(args.seed)
@@ -297,6 +301,11 @@ def test(args):
     print('test ' + algo_name + ' on ' + env_name)
     output_dir = os.path.join('outputs', env_name, algo_name)
     agent.load(os.path.join(output_dir, 'weights'))
+    if args.video:
+        test_env = gym.wrappers.RecordVideo(
+            test_env,
+            video_folder=os.path.join(output_dir, 'video')
+        )
 
     return_meter = DiscountedMeter(gamma)
     score_meter = DiscountedMeter(1)

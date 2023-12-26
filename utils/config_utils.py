@@ -13,5 +13,6 @@ def config_parse() -> argparse.Namespace:
     parser.add_argument('--device', type=str, default='cuda:0', help='device to run')
     parser.add_argument('--debug', action='store_true', help='whether show some debug info')
     parser.add_argument('--gui', action='store_true', help='whether show gui')
+    parser.add_argument('--video', action='store_true', help='whether save video')
     args = parser.parse_args()
     return args
