@@ -225,7 +225,7 @@ def test(args):
         else:
             test_env = gym.make(env_name)
         test_env.action_space.seed(args.seed)
-        # test_env = NoopResetEnv(test_env)
+        test_env = NoopResetEnv(test_env)
         # test_env = FireResetEnv(test_env)
         # test_env = EpisodicLifeEnv(test_env)
         test_env = MaxAndSkipEnv(test_env)
@@ -248,6 +248,7 @@ def test(args):
             agent = DQN(state_mode, state_dim, action_dim, 
                         config['buffer_size'], config['sync_freq'], config['epsilon_max'], config['epsilon_min'], config['epsilon_frac'], 
                         config['learn_start'], config['learn_freq'], 
+                        config['reward_center'], config['reward_scale'], 
                         gamma, config['lr'], config['batch_size'], iteration_num, args.device, is_train=False)
         else:
             algo_name = 'D3QN'
@@ -258,6 +259,7 @@ def test(args):
             agent = D3QN(state_mode, state_dim, action_dim, 
                          config['buffer_size'], config['sync_freq'], config['epsilon_max'], config['epsilon_min'], config['epsilon_frac'], 
                          config['learn_start'], config['learn_freq'], 
+                         config['reward_center'], config['reward_scale'], 
                          gamma, config['lr'], config['batch_size'], iteration_num, args.device, is_train=False)
     elif env_name in ['Hopper-v2', 'Humanoid-v2', 'HalfCheetah-v2', 'Ant-v2']:
         if args.gui:
