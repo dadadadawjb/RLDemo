@@ -1,0 +1,19 @@
+{
+    "iteration_num": 3000000, 
+    "gamma": 0.99, 
+
+    "buffer_size": 1000000, 
+    "tau": 0.005, 
+    "noise_max": 0.3, 
+    "noise_min": 0.05, 
+    "noise_frac": 0.5, 
+    "target_noise": 0.1, 
+    "target_noise_clip": 0.2, 
+    "learn_start": 10000, 
+    "learn_freq": 1, 
+    "policy_learn_freq": 2, 
+
+    "batch_size": 128, 
+    "actor_lr": 1e-4, 
+    "critic_lr": 1e-4
+}
